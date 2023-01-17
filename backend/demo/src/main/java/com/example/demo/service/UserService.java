@@ -9,5 +9,5 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class UserService {
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 }

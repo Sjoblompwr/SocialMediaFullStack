@@ -9,5 +9,5 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class TweetService {
-    TweetRepository tweetRepository;
+    private final TweetRepository tweetRepository;
 }
