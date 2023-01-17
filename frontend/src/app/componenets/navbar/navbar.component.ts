@@ -8,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   constructor() { }
-
+  public user = {
+    id: 1,
+    username: "davidsjoblom",
+    email: "davidsjoblom@hotmail.se",
+    profileImageUrl: "",
+    friends: {},
+  
+  }
   ngOnInit(): void {
   }
 

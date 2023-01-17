@@ -16,20 +16,21 @@ import lombok.Setter;
 @Getter
 public class User {
 
-    public User(String email, String password, String profilePicLink, User[] friends) {
+    public User(String username,String email, String password, String profileImageUrl, User[] friends) {
+        this.username = username;
         this.email = email;
         this.password = password;
-        this.profilePicLink = profilePicLink;
+        this.profileImageUrl = profileImageUrl;
         this.friends = friends;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String username;
     private String email;
     private String password;
-    private String profilePicLink;
+    private String profileImageUrl;
     @OneToMany(fetch = FetchType.EAGER)
     private User[] friends;
 }

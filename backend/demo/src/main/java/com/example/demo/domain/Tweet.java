@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +31,11 @@ public class Tweet {
     @OneToOne
     @JoinColumn(name="user_id")
     private User user;
-    //private Likes[] likes;
-    //private Comments[] comments;
+    @OneToMany
+    @JoinColumn(name="like_id")
+    private Like[] likes;
+    @OneToMany
+    @JoinColumn(name="tweet_id")
+    private Tweet[] comments;
     private Boolean commentBoolean;
 }
