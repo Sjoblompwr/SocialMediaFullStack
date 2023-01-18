@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CommentModalComponent } from '../comment-modal/comment-modal.component';
 import { Tweet } from '../interfaces/tweet';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-feed',
@@ -8,7 +10,7 @@ import { Tweet } from '../interfaces/tweet';
 })
 export class FeedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalService: MdbModalService) { }
 
   public posts = [5, 4, 3, 2, 1];
 
@@ -35,7 +37,8 @@ export class FeedComponent implements OnInit {
   }
 
   public updateStatus(){
-    var message = (<HTMLInputElement>document.getElementById("status")).value;
+    var message:string = (<HTMLInputElement>document.getElementById("status")).value;
+
      let newTweet = {
       id: this.tweets.length + 1, 
       message: message, 
@@ -45,6 +48,12 @@ export class FeedComponent implements OnInit {
       commentBoolean: false
     };
     this.tweets.push(newTweet);
+    console.log("Send tweet to backend.");
   }
 
+
+  public commentModal(){
+    const modalRef: MdbModalRef<CommentModalComponent> = this.modalService.open(CommentModalComponent);
+    
+  }
 }
