@@ -6,7 +6,7 @@
           <ul class="list-inline" id='list_PostActions'>
             <li class='active'><a>Update status</a></li>
           </ul>
-          <textarea id="status" class="form-control" placeholder="What's in your mind?"></textarea>
+          <textarea id="status" class="form-control" placeholder="What's on your mind?"></textarea>
           <ul class='list-inline post-actions'>
             <li class='pull-right'><a (click)="updateStatus()" class='btn btn-primary btn-xs'>Post</a></li>
           </ul>
@@ -55,7 +55,7 @@
               </a>
             </li>
           </ul>
-          <button type="button" (click)="commentModal()"class="btn btn-primary float-right">Reply</button>
+          <button type="button" (click)="commentModal(tweet)"class="btn btn-primary float-right">Reply</button>
         </div>
 
       </div>
