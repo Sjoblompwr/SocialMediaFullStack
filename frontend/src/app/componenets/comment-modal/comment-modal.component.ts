@@ -29,7 +29,9 @@ export class CommentModalComponent{
     comments: [],
     commentBoolean: false
   }
-
+  /*
+  * Sends the comment back to parent component. Which in turn sends it to the backend.
+  */
   public replyToComment(){
     var message:string = (<HTMLInputElement>document.getElementById("comment")).value;
     this.modalRef.close(message);

@@ -37,27 +37,23 @@
           <p class="tweet-message">{{tweet.message}}</p>
 
           <ul class="list-inline d-sm-flex my-0">
+            <a (click)="like(tweet)" style="cursor: pointer;">
+              <li class="list-inline-item g-mr-20">
+                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover">
+                  <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
+                  {{tweet.likes.length}}
+                </a>
+              </li>
+            </a>
             <li class="list-inline-item g-mr-20">
-              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
-                {{tweet.likes.length}}
-              </a>
-            </li>
-            <li class="list-inline-item g-mr-20">
-              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover">
                 <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i>
                 Downvotes
               </a>
             </li>
-            <li class="list-inline-item ml-auto" *ngFor="let comment of tweet.comments">
-              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                {{comment.message}}}
-              </a>
-            </li>
           </ul>
-          <button type="button" (click)="commentModal(tweet)"class="btn btn-primary float-right">Reply</button>
+          <button type="button" (click)="commentModal(tweet)" class="btn btn-primary float-right">Reply</button>
         </div>
-
       </div>
 
     </div>

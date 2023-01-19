@@ -35,7 +35,9 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     localStorage.setItem("user", JSON.stringify(this.user));
   }
-
+  /*
+  * Updates the status of the user.
+   */
   public updateStatus() {
     var message: string = (<HTMLInputElement>document.getElementById("status")).value;
 
@@ -48,23 +50,24 @@ export class FeedComponent implements OnInit {
       commentBoolean: false
     };
     this.tweets.push(newTweet);
-    console.log("Send tweet to backend.");
+    //Need to implement to send tweet to backend.
   }
 
-
+  /*
+  * Opens a modal for commenting on a tweet.
+  */
   public commentModal(tweet: Tweet) {
-
     this.modalService.open(CommentModalComponent, {
       data: { title: 'Custom title', tweet: tweet }
     }).onClose.subscribe((message: string) => {
-      if (message) {
+      if (message.length > 0) {
         let newTweet = {
           id: this.tweets.length + 1,
           message: message,
-          user: this.user,
+          user: JSON.parse(localStorage.getItem("user") as string),
           likes: [],
           comments: [],
-          commentBoolean: false
+          commentBoolean: true
         };
 
         tweet.comments.push(newTweet);
@@ -72,5 +75,18 @@ export class FeedComponent implements OnInit {
 
       }
     });
+  }
+
+  /*
+  * User likes a tweet.
+   */
+  public like(tweet: Tweet) {
+    let currentUser = JSON.parse(localStorage.getItem("user") as string);
+    let like = {
+      id: 0,
+      user: currentUser
+    }
+    tweet.likes.push(like);
+    //Need to implement to send like to backend.
   }
 }
