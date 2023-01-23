@@ -18,14 +18,12 @@
       <div *ngFor="let tweet of tweets">
         <img class="d-flex g-width-50 g-height-50 rounded-circle"
           src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description">
-        <div class="media-body u-shadow-v18 g-bg-secondary">
+        <div class="media-body u-shadow-v18 g-bg-secondary"  [routerLink]="[tweet.user.username,'status',tweet.id]">
           <div>
             <h5>{{tweet.user.username}}</h5>
             <span>Date</span>
           </div>
-
           <p class="tweet-message">{{tweet.message}}</p>
-
           <ul>
             <a (click)="like(tweet)" style="cursor: pointer;">
               <li>
@@ -34,10 +32,9 @@
               </li>
             </a>
           </ul>
-          <button type="button" (click)="commentModal(tweet)" class="btn btn-primary pull-right">Reply</button>
         </div>
+        <button type="button" (click)="commentModal(tweet)" class="btn btn-primary pull-right">Reply</button>
       </div>
-
     </div>
   </div>
 </div>

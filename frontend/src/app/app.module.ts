@@ -9,6 +9,7 @@ import { RightSideBarComponent } from './componenets/right-side-bar/right-side-b
 import { CommentModalComponent } from './componenets/comment-modal/comment-modal.component';
 import { MdbModalModule, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StatusFeedComponent } from './componenets/status-feed/status-feed.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NavbarComponent,
     FeedComponent,
     RightSideBarComponent,
-    CommentModalComponent
+    CommentModalComponent,
+    StatusFeedComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,32 @@
+body{
+    margin-top:20px;
+    background:#eee;
+}
+
+
+/* Set size of whoever tweeted profile*/
+.g-height-50 {
+    height: 50px;
+}
+/* Set size of whoever tweeted profile*/
+.g-width-50 {
+    width: 50px !important;
+}
+
+/* Set background for tweet-message div*/
+.g-bg-secondary {
+    background-color: #fafafa !important;
+    border-radius: 7px;
+}
+
+/*Set color for the secondary text such as Date and Like*/
+.g-color-gray-dark-v4 {
+    color: #777 !important;
+}
+
+.tweet-message{
+    hyphens: auto;
+    word-break: break-all;
+    max-width: 75ch;
+    padding: 20px;
+}
