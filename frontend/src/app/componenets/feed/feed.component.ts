@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommentModalComponent } from '../comment-modal/comment-modal.component';
 import { Tweet } from '../interfaces/tweet';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { FeedService } from '../service/feed.service';
 
 @Component({
   selector: 'app-feed',
@@ -10,7 +11,7 @@ import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 })
 export class FeedComponent implements OnInit {
 
-  constructor(private modalService: MdbModalService) { }
+  constructor(private modalService: MdbModalService,private feedService:FeedService) { }
 
   public posts = [5, 4, 3, 2, 1];
 
@@ -34,6 +35,23 @@ export class FeedComponent implements OnInit {
   }
   ngOnInit(): void {
     localStorage.setItem("user", JSON.stringify(this.user));
+    this.getAllTweets();
+  }
+  /*
+  * Gets all tweets from the backend.
+  */
+  public getAllTweets() {
+    this.feedService.getFeed().subscribe((response:Tweet[]) => {
+      this.tweets = response;
+    });
+  }
+  /*
+  * Deletes a tweet from the backend.
+  */
+  public deleteTweet(tweet:Tweet) {
+    this.feedService.deleteTweet(tweet).subscribe((response:Tweet) => {
+      this.tweets = this.tweets.filter((t:Tweet) => t.id !== tweet.id);
+    });
   }
   /*
   * Updates the status of the user.
@@ -51,6 +69,10 @@ export class FeedComponent implements OnInit {
     };
     this.tweets.push(newTweet);
     //Need to implement to send tweet to backend.
+    this.feedService.postTweet(newTweet).subscribe((response:Tweet) => {
+      this.tweets.push(response);
+    });
+
   }
 
   /*
@@ -69,10 +91,7 @@ export class FeedComponent implements OnInit {
           comments: [],
           commentBoolean: true
         };
-
         tweet.comments.push(newTweet);
-
-
       }
     });
   }
