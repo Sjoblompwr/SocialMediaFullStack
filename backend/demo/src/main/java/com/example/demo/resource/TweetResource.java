@@ -6,7 +6,11 @@ import com.example.demo.domain.Tweet;
 import com.example.demo.service.TweetService;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @RequestMapping("/tweet")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TweetResource {
     
     private final TweetService tweetService;
 
+
     @GetMapping("/feed")
-    public Tweet[] getFeed(){
+    public List<Tweet> getFeed(){
         return tweetService.getAllTweets();
     }
 
@@ -33,8 +38,8 @@ public class TweetResource {
     }
 
     @DeleteMapping("/delete")
-    public Tweet deleteTweet(@PathVariable Long id){
-        return tweetService.deleteTweetById(id);
+    public void deleteTweet(@PathVariable Long id){
+        tweetService.deleteTweetById(id);
     }
    
     
