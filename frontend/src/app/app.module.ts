@@ -10,6 +10,7 @@ import { CommentModalComponent } from './componenets/comment-modal/comment-modal
 import { MdbModalModule, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StatusFeedComponent } from './componenets/status-feed/status-feed.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,12 +20,14 @@ import { StatusFeedComponent } from './componenets/status-feed/status-feed.compo
     RightSideBarComponent,
     CommentModalComponent,
     StatusFeedComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MdbModalModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [MdbModalService],
   bootstrap: [AppComponent]

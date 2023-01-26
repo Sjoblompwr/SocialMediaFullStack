@@ -35,13 +35,14 @@ export class FeedComponent implements OnInit {
   }
   ngOnInit(): void {
     localStorage.setItem("user", JSON.stringify(this.user));
-    this.getAllTweets();
+   this.getAllTweets();
   }
   /*
   * Gets all tweets from the backend.
   */
   public getAllTweets() {
     this.feedService.getFeed().subscribe((response:Tweet[]) => {
+      console.log(response);
       this.tweets = response;
     });
   }
@@ -49,8 +50,8 @@ export class FeedComponent implements OnInit {
   * Deletes a tweet from the backend.
   */
   public deleteTweet(tweet:Tweet) {
-    this.feedService.deleteTweet(tweet).subscribe((response:Tweet) => {
-      this.tweets = this.tweets.filter((t:Tweet) => t.id !== tweet.id);
+    this.feedService.deleteTweet(tweet).subscribe((response:void) => {
+      console.log(response);
     });
   }
   /*

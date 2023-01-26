@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("/tweet")
 @RequiredArgsConstructor
+@CrossOrigin
 public class TweetResource {
     
     private final TweetService tweetService;
@@ -37,7 +39,7 @@ public class TweetResource {
         return tweetService.addTweet(tweet);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     public void deleteTweet(@PathVariable Long id){
         tweetService.deleteTweetById(id);
     }

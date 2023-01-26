@@ -18,7 +18,7 @@ public class TweetService {
 
     public List<Tweet> getAllTweets() {
         Long temp = 1L;
-        return tweetRepository.findByUserId(temp); 
+        return tweetRepository.findAll();
     }
 
     public Tweet addTweet(Tweet tweet) {

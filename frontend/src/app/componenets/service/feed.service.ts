@@ -25,8 +25,8 @@ export class FeedService {
   /*
   * Deletes a tweet from the backend.
   */
-  deleteTweet(tweet:Tweet):Observable<Tweet> {
-    return this.http.delete<Tweet>(`${this.url}/tweet/delete/${tweet.id}`);
+  deleteTweet(tweet:Tweet):Observable<void> {
+    return this.http.delete<void>(`${this.url}/tweet/delete/${tweet.id}`);
   }
 
 }
