@@ -29,4 +29,18 @@ export class FeedService {
     return this.http.delete<void>(`${this.url}/tweet/delete/${tweet.id}`);
   }
 
+  /*
+  * Get Tweet by Id
+  */
+  getTweetById(id:number):Observable<Tweet> {
+    return this.http.get<Tweet>(`${this.url}/tweet/${id}`);
+  }
+
+  /*
+  * Response to tweet
+  */
+  responseTweet(response:{id:number, tweet:Tweet}):Observable<Tweet> {
+    return this.http.post<Tweet>(`${this.url}/tweet/response`, response);
+  }
+
 }

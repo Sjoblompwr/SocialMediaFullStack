@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Tweet } from '../interfaces/tweet';
+import { FeedService } from '../service/feed.service';
 
 @Component({
   selector: 'app-status-feed',
@@ -10,7 +11,7 @@ import { Tweet } from '../interfaces/tweet';
 export class StatusFeedComponent implements OnInit {
   href!: string;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private feedService:FeedService) { }
   
   public user = {
     id: 1,
@@ -22,7 +23,7 @@ export class StatusFeedComponent implements OnInit {
   }
 
   public tweets: Tweet[] = [];
-  public tweet = {
+  public tweet:Tweet = {
     id: 1,
     message: "",
     user: this.user,
@@ -33,10 +34,18 @@ export class StatusFeedComponent implements OnInit {
   ngOnInit(): void {
     this.href = this.router.url;
     const username = this.href.split("/")[1];
-    const tweetId = this.href.split("/")[3];
+    const tweetId = +this.href.split("/")[3];
     console.log(username);
     console.log(tweetId); 
+    this.getTweetById(tweetId);
   }
+
+  public getTweetById(tweetId:number) {
+    this.feedService.getTweetById(tweetId).subscribe((response:Tweet) => {
+      this.tweet = response;
+    });
+  }
+
 
 }
 

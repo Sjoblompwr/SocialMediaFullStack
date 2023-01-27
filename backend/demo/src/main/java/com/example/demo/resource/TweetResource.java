@@ -5,12 +5,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.domain.Tweet;
 import com.example.demo.service.TweetService;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +23,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/tweet")
 @RequiredArgsConstructor
 @CrossOrigin
+@Slf4j
 public class TweetResource {
     
     private final TweetService tweetService;
 
+    @GetMapping("/{id}")
+    public Tweet getTweetById(@PathVariable Long id){
+        log.info(tweetService.getTweetById(id).toString());
+        return tweetService.getTweetById(id);
+    }
 
     @GetMapping("/feed")
     public List<Tweet> getFeed(){
@@ -42,6 +47,13 @@ public class TweetResource {
     @DeleteMapping("/delete/{id}")
     public void deleteTweet(@PathVariable Long id){
         tweetService.deleteTweetById(id);
+    }
+
+    @PostMapping("/response")
+    public Tweet postResponse(@RequestBody Response response){
+        Tweet tweet = tweetService.getTweetById(response.getId());
+        tweet.getComments().add(tweet);
+        return tweetService.updateTweet(tweet);
     }
    
     

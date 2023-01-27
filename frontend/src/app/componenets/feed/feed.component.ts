@@ -68,7 +68,6 @@ export class FeedComponent implements OnInit {
       comments: [],
       commentBoolean: false
     };
-    this.tweets.push(newTweet);
     //Need to implement to send tweet to backend.
     this.feedService.postTweet(newTweet).subscribe((response:Tweet) => {
       this.tweets.push(response);
@@ -84,14 +83,16 @@ export class FeedComponent implements OnInit {
       data: { title: 'Custom title', tweet: tweet }
     }).onClose.subscribe((message: string) => {
       if (message.length > 0) {
+
         let newTweet = {
-          id: this.tweets.length + 1,
+          id: 1,
           message: message,
           user: JSON.parse(localStorage.getItem("user") as string),
           likes: [],
           comments: [],
           commentBoolean: true
         };
+        let response = {responeToId: tweet.id, tweet: newTweet};
         tweet.comments.push(newTweet);
       }
     });

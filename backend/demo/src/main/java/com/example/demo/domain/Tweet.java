@@ -1,5 +1,9 @@
 package com.example.demo.domain;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,12 +21,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Tweet {
 
-    public Tweet(String message, User user, Boolean commentBoolean) {
+    public Tweet(String message,List<Like> like,List<Tweet> comments,  User user, Boolean commentBoolean) {
         this.message = message;
         this.user = user;
         this.commentBoolean = commentBoolean;
+        this.likes = like;   
+        this.comments = comments;
     }
     
     @Id
@@ -35,9 +42,17 @@ public class Tweet {
     private User user;
     @OneToMany
     @JoinColumn(name="like_id")
-    private Like[] likes;
+    private List<Like> likes;
     @OneToMany
     @JoinColumn(name="tweet_id")
-    private Tweet[] comments;
+    private List<Tweet> comments;
     private Boolean commentBoolean;
+
+    @Override
+    public String toString(){
+
+        return this.id.toString() + " " 
+        + this.message + " "
+        + this.user.getUsername();
+    }
 }

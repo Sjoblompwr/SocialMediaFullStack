@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { FeedComponent } from '../feed/feed.component';
+import { FeedService } from '../service/feed.service';
 
 @Component({
   selector: 'app-comment-modal',
@@ -10,7 +11,7 @@ import { FeedComponent } from '../feed/feed.component';
 export class CommentModalComponent{
 
 
-  constructor(public modalRef: MdbModalRef<FeedComponent>) { }
+  constructor(public modalRef: MdbModalRef<FeedComponent>,private feedService:FeedService) { }
 
   title: string | null = null;
   public user = {
@@ -26,8 +27,16 @@ export class CommentModalComponent{
     message: "",
     user: this.user,
     likes: [],
-    comments: [],
+    comments: [{}],
     commentBoolean: false
+  }
+  public tweetReply = {
+    id: 1,
+    message: "",
+    user: this.user,
+    likes: [],
+    comments: [],
+    commentBoolean: true
   }
   /*
   * Sends the comment back to parent component. Which in turn sends it to the backend.
