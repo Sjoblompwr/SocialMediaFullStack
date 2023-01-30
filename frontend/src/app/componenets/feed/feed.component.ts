@@ -92,8 +92,11 @@ export class FeedComponent implements OnInit {
           comments: [],
           commentBoolean: true
         };
-        let response = {responeToId: tweet.id, tweet: newTweet};
+        let response = {responeToId: tweet.id, message: message};
         tweet.comments.push(newTweet);
+        this.feedService.responseTweet(response).subscribe((response:Tweet) => {
+          console.log(response);
+        });
       }
     });
   }

@@ -39,7 +39,8 @@ export class FeedService {
   /*
   * Response to tweet
   */
-  responseTweet(response:{id:number, tweet:Tweet}):Observable<Tweet> {
+  responseTweet(response:{responeToId:number, message:string}):Observable<Tweet> {
+    console.log(response);
     return this.http.post<Tweet>(`${this.url}/tweet/response`, response);
   }
 

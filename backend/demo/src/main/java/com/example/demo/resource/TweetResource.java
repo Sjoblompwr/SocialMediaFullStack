@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Tweet;
 import com.example.demo.service.TweetService;
+import com.example.demo.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TweetResource {
     
     private final TweetService tweetService;
+    private final UserService userService;
 
     @GetMapping("/{id}")
     public Tweet getTweetById(@PathVariable Long id){
@@ -51,9 +53,19 @@ public class TweetResource {
 
     @PostMapping("/response")
     public Tweet postResponse(@RequestBody Response response){
-        Tweet tweet = tweetService.getTweetById(response.getId());
-        tweet.getComments().add(tweet);
+        log.info( "response id: " + response.getResponeToId().toString());
+        Tweet tweet = tweetService.getTweetById(response.getResponeToId());
+        Tweet newTweet = new Tweet();
+        newTweet.setCommentBoolean(true);
+        //User should be set to the user who is logged in but for now hardcoded
+        newTweet.setUser(userService.getUserById(1L));
+        newTweet.setMessage(response.getMessage());
+        List<Tweet> tweets = tweet.getComments();
+        tweetService.updateTweet(newTweet);
+        tweets.add(newTweet);
+        tweet.setComments(tweets);
         return tweetService.updateTweet(tweet);
+     // return null;
     }
    
     

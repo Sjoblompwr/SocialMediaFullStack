@@ -1,6 +1,5 @@
 package com.example.demo.resource;
 
-import com.example.demo.domain.Tweet;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +8,6 @@ import lombok.Setter;
 @Getter
 public class Response {
 
-    private Long id;
-    private Tweet tweet;
+    private Long responeToId;
+    private String message;
 }
