@@ -3,6 +3,9 @@ package com.example.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,12 +39,13 @@ for (User user : users) {
     List<User> friends = new ArrayList<>(users);
     friends.remove(user);
 	try{
-    user.setFriends( friends);
+    user.setFriends(friends);
     userRepository.save(user);
 	}catch(Exception e){
 		System.out.println(e);
 	}	
 }
+
 		};
 	}
 

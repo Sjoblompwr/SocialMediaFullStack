@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ import lombok.Setter;
 @Getter
 public class User {
 
+    public User(String username,String email, String password, String profileImageUrl, List<User> friends) {
     public User(String username,String email, String password, String profileImageUrl, List<User> friends) {
         this.username = username;
         this.email = email;
