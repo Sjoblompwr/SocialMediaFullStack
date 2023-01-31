@@ -19,4 +19,8 @@ public class LikeService {
     public Optional<Like> getLike(Long id) {
         return likeRepository.findById(id);
     }
+
+    public Like addLike(Like like) {
+        return likeRepository.save(like);
+    }
 }

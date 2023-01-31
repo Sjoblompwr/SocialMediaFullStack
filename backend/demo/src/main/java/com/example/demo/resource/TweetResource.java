@@ -2,7 +2,9 @@ package com.example.demo.resource;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.domain.Like;
 import com.example.demo.domain.Tweet;
+import com.example.demo.service.LikeService;
 import com.example.demo.service.TweetService;
 import com.example.demo.service.UserService;
 
@@ -29,6 +31,7 @@ public class TweetResource {
     
     private final TweetService tweetService;
     private final UserService userService;
+    private final LikeService likeService;
 
     @GetMapping("/{id}")
     public Tweet getTweetById(@PathVariable Long id){
@@ -65,7 +68,19 @@ public class TweetResource {
         tweets.add(newTweet);
         tweet.setComments(tweets);
         return tweetService.updateTweet(tweet);
-     // return null;
+    }
+
+    @PostMapping("/like")
+    public Tweet likeTweet(@RequestBody Tweet tweet){
+        List<Like> likes = tweet.getLikes();
+        if(!likes.isEmpty())
+        for(Like like: likes){
+            if(like.getUser().getId() == 1L){
+                likes.remove(like);
+            }
+        }
+        tweet.getLikes().add(likeService.addLike(new Like(userService.getUserById(1L))));
+        return tweetService.updateTweet(tweet);
     }
    
     

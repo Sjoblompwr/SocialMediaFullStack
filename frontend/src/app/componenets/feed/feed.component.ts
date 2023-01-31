@@ -112,5 +112,8 @@ export class FeedComponent implements OnInit {
     }
     tweet.likes.push(like);
     //Need to implement to send like to backend.
+    this.feedService.likeTweet(tweet).subscribe((response:Tweet) => {
+      console.log(response);
+    });
   }
 }

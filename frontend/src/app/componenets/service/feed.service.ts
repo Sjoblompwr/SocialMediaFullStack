@@ -44,4 +44,11 @@ export class FeedService {
     return this.http.post<Tweet>(`${this.url}/tweet/response`, response);
   }
 
+  /*
+  * Like a tweet
+  */
+  likeTweet(tweet:Tweet):Observable<Tweet> {
+    return this.http.post<Tweet>(`${this.url}/tweet/like`, tweet);
+  }
+
 }
