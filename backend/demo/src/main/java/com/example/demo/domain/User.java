@@ -23,7 +23,6 @@ import lombok.Setter;
 public class User {
 
     public User(String username,String email, String password, String profileImageUrl, List<User> friends) {
-    public User(String username,String email, String password, String profileImageUrl, List<User> friends) {
         this.username = username;
         this.email = email;
         this.password = password;
