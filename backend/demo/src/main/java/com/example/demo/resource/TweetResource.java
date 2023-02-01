@@ -72,14 +72,25 @@ public class TweetResource {
 
     @PostMapping("/like")
     public Tweet likeTweet(@RequestBody Tweet tweet){
+
         List<Like> likes = tweet.getLikes();
         if(!likes.isEmpty())
         for(Like like: likes){
             if(like.getUser().getId() == 1L){
                 likes.remove(like);
+                break;
             }
         }
-        tweet.getLikes().add(likeService.addLike(new Like(userService.getUserById(1L))));
+        else{
+        likes.forEach(like->{
+            log.info(like.toString());
+        });
+        Like like = new Like(userService.getUserById(1L));
+        likeService.addLike(like);
+        likes.add(like);
+
+        tweet.setLikes(likes);
+    }
         return tweetService.updateTweet(tweet);
     }
    
