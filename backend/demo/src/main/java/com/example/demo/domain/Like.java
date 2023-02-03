@@ -28,4 +28,9 @@ public class Like {
     @OneToOne
     @JoinColumn(name="user_id")
     private User user;
+
+    @Override
+    public String toString() {
+        return "Like [id=" + id + ", user=" + user.getUsername() + "]";
+    }
 }
