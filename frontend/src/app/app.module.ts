@@ -11,6 +11,10 @@ import { MdbModalModule, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StatusFeedComponent } from './componenets/status-feed/status-feed.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './componenets/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './componenets/register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
     FeedComponent,
     RightSideBarComponent,
     CommentModalComponent,
-    StatusFeedComponent
+    StatusFeedComponent,
+    LoginComponent,
+    RegisterComponent
     
   ],
   imports: [
@@ -27,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     MdbModalModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [MdbModalService],
   bootstrap: [AppComponent]
