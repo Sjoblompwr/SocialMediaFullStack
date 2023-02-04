@@ -9,14 +9,17 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
 import com.example.demo.domain.User;
 import com.example.demo.domain.Tweet;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.security.RsaKeyProperties;
 import com.example.demo.repository.TweetRepository;
 
 @SpringBootApplication
+@EnableConfigurationProperties(RsaKeyProperties.class)
 public class DemoApplication {
 
 	public static void main(String[] args) {
