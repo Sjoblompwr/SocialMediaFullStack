@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,14 @@ export class LoginComponent {
   username: string = "";
   password: string = "";
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private loginService:LoginService) {}
 
   onSubmit() {
-    // Perform authentication logic here
-    // ...
+    var username = (<HTMLInputElement>document.getElementById("inputEmail")).value;
+    var password = (<HTMLInputElement>document.getElementById("inputPassword")).value;
+    this.loginService.login({username:username, password:password}).subscribe((data) => {
+      console.log(data);
+    });
 
-    // Navigate to the home page after successful login
-    this.router.navigate(['/home']);
   }
 }
