@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './componenets/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './componenets/register/register.component';
+import { AuthInterceptor } from './componenets/service/interceptor/auth-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -36,7 +38,7 @@ import { RegisterComponent } from './componenets/register/register.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [MdbModalService],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },MdbModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

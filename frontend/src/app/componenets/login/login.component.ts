@@ -17,7 +17,10 @@ export class LoginComponent {
     var username = (<HTMLInputElement>document.getElementById("inputEmail")).value;
     var password = (<HTMLInputElement>document.getElementById("inputPassword")).value;
     this.loginService.login({username:username, password:password}).subscribe((data) => {
-      console.log(data);
+      localStorage.setItem('token', data);
+      console.log(JSON.stringify(data));
+    }, (error) => {
+      console.error(error);
     });
 
   }

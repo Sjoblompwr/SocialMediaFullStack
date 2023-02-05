@@ -13,7 +13,7 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
 
-  login(loginRequest:LoginRequest):Observable<any> {
-    return this.http.post<any>(`${this.url}/login`, loginRequest);
+  public login(loginRequest:LoginRequest):Observable<string> {
+    return this.http.post<string>(`${this.url}/login`, loginRequest);
   }
 }
