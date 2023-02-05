@@ -51,4 +51,11 @@ export class FeedService {
     return this.http.post<Tweet>(`${this.url}/tweet/like`, tweet);
   }
 
+  getImage(id: number) {
+    return this.http.get(`${this.url}/profile-picture/` + id, { responseType: 'blob' });
+}
+
+getAllImages() {
+    return this.http.get(`${this.url}/profile-picture/all`);
+}
 }

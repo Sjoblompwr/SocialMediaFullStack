@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +18,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.demo.domain.User;
+import com.example.demo.domain.ProfilePicture;
 import com.example.demo.domain.Tweet;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.RsaKeyProperties;
+
+import lombok.extern.slf4j.Slf4j;
+
+import com.example.demo.repository.ProfilePictureRepository;
 import com.example.demo.repository.TweetRepository;
 
 @SpringBootApplication
+@Slf4j
 @EnableConfigurationProperties(RsaKeyProperties.class)
 public class DemoApplication {
 
@@ -33,8 +43,22 @@ public class DemoApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(UserRepository userRepository, TweetRepository tweetRepository) {
+	CommandLineRunner init(UserRepository userRepository, TweetRepository tweetRepository, ProfilePictureRepository profilePictureRepository) {
 		return args -> {
+
+			byte[] imageData;
+			String[] picName = { "BlackWoman", "ClarkKent", "Duche", "Frank"};
+			for (int i = 0; i < picName.length; i++) {
+				try {
+				Path path = Paths.get("C:/Users/David/Desktop/Twatter/backend/demo/src/main/resources/pictures/"+picName[i] +".jpg");
+				imageData = Files.readAllBytes(path);
+				ProfilePicture profilePicture = new ProfilePicture(imageData);
+				profilePictureRepository.save(profilePicture);
+				} catch (IOException e) {
+				e.printStackTrace();
+				}
+			}
+
 
 			String[] names = { "David", "Emily", "John", "Jessica", "Michael", "Amy" };
 			String[] emails = { "davidsjoblom@hotmail.se", "emily123@gmail.com", "john.doe@gmail.com",

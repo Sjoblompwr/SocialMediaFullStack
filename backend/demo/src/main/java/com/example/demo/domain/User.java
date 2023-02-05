@@ -8,7 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,4 +40,7 @@ public class User {
     @ManyToMany
     @JsonIgnoreProperties("friends")
     private List<User> friends;
+    @OneToOne
+    @JoinColumn(name="ProfilePicture_id")
+    private ProfilePicture profilePicture;
 }

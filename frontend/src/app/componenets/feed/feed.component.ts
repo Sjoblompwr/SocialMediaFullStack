@@ -24,6 +24,7 @@ export class FeedComponent implements OnInit {
 
   }
 
+  imageUrl: string ="";
   public tweets: Tweet[] = [];
   public tweet = {
     id: 1,
@@ -36,6 +37,13 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     localStorage.setItem("user", JSON.stringify(this.user));
    this.getAllTweets();
+   //Need to create picure interface and such.
+  this.feedService.getAllImages.subscribe((data) => {
+    console.log(data);
+    const reader = new FileReader();
+    reader.addEventListener('load', () => this.imageUrl = reader.result as string);
+    reader.readAsDataURL(new Blob([data]));
+  });
   }
   /*
   * Gets all tweets from the backend.
@@ -114,6 +122,11 @@ export class FeedComponent implements OnInit {
     //Need to implement to send like to backend.
     this.feedService.likeTweet(tweet).subscribe((response:Tweet) => {
       tweet  = response;
+      this.tweets.map((t:Tweet) => {
+        if(t.id == tweet.id) {
+          t.likes = tweet.likes;
+        }
+      });
     });
   }
 }

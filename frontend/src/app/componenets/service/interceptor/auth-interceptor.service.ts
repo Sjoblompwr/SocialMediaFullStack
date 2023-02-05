@@ -4,7 +4,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  auth = localStorage.getItem('id_token');
+  auth = localStorage.getItem('token');
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const re = "login";
     if (request.url.includes(re) === false) {
