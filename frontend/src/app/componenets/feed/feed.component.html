@@ -5,7 +5,11 @@
     <div class='pull-right'><a (click)="updateStatus()" class='btn btn-primary btn-xs'>Post</a></div>
   </form>
 </div>
-<img [src]="imageUrl" *ngIf="imageUrl">
+<div *ngFor="let image of imageUrl">
+  <img [src]="image">
+</div>
+
+<img [src]="singularImageUrl" *ngIf="singularImageUrl" >
 
 
 <!--                                                      COMMENTS                                                    -->

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Tweet } from '../interfaces/tweet';
+import { profilePicture } from '../interfaces/profilePicture';
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +56,7 @@ export class FeedService {
     return this.http.get(`${this.url}/profile-picture/` + id, { responseType: 'blob' });
 }
 
-getAllImages() {
-    return this.http.get(`${this.url}/profile-picture/all`);
+getAllImages():Observable<profilePicture[]> {
+    return this.http.get<profilePicture[]>(`${this.url}/profile-picture/all`);
 }
 }

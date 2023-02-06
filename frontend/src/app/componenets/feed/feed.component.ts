@@ -3,6 +3,7 @@ import { CommentModalComponent } from '../comment-modal/comment-modal.component'
 import { Tweet } from '../interfaces/tweet';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { FeedService } from '../service/feed.service';
+import { profilePicture } from '../interfaces/profilePicture';
 
 @Component({
   selector: 'app-feed',
@@ -24,7 +25,8 @@ export class FeedComponent implements OnInit {
 
   }
 
-  imageUrl: string ="";
+  imageUrl: string[] = [];
+  singularImageUrl: string = "";
   public tweets: Tweet[] = [];
   public tweet = {
     id: 1,
@@ -38,11 +40,24 @@ export class FeedComponent implements OnInit {
     localStorage.setItem("user", JSON.stringify(this.user));
    this.getAllTweets();
    //Need to create picure interface and such.
-  this.feedService.getAllImages.subscribe((data) => {
+  this.feedService.getAllImages().subscribe((data:any) => {
     console.log(data);
-    const reader = new FileReader();
-    reader.addEventListener('load', () => this.imageUrl = reader.result as string);
-    reader.readAsDataURL(new Blob([data]));
+    let temp: profilePicture[] = data;
+    temp.forEach((picture) =>{
+      const reader = new FileReader();
+      reader.addEventListener('load', () => this.imageUrl.push ( reader.result as string));
+      reader.readAsDataURL(new Blob([picture.imageData]));
+    });
+
+  });
+  this.feedService.getImage(1).subscribe((data) => {
+    console.log(data);
+   
+      const reader = new FileReader();
+      reader.addEventListener('load', () => this.singularImageUrl =  ( reader.result as string));
+      reader.readAsDataURL(new Blob([data]));
+   
+
   });
   }
   /*
