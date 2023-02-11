@@ -22,11 +22,11 @@ import lombok.Setter;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
-    public User(String username,String email, String password, String profileImageUrl, List<User> friends) {
+    public User(String username,String email, String password, ProfilePicture profilePicture, List<User> friends) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.profileImageUrl = profileImageUrl;
+        this.profilePicture = profilePicture;
         this.friends = friends;
     }
 
@@ -36,7 +36,6 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private String profileImageUrl;
     @ManyToMany
     @JsonIgnoreProperties("friends")
     private List<User> friends;

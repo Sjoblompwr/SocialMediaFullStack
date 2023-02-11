@@ -20,13 +20,14 @@ export class FeedComponent implements OnInit {
     id: 1,
     username: "davidsjoblom",
     email: "davidsjoblom@hotmail.se",
-    profileImageUrl: "",
+    profilePicture: {id:1, imageData: new Uint8Array(0)},
     friends: []
 
   }
 
   imageUrl: string[] = [];
-  singularImageUrl: string = "";
+  singularImageUrl: string[] = [];
+
   public tweets: Tweet[] = [];
   public tweet = {
     id: 1,
@@ -40,25 +41,7 @@ export class FeedComponent implements OnInit {
     localStorage.setItem("user", JSON.stringify(this.user));
    this.getAllTweets();
    //Need to create picure interface and such.
-  this.feedService.getAllImages().subscribe((data:any) => {
-    console.log(data);
-    let temp: profilePicture[] = data;
-    temp.forEach((picture) =>{
-      const reader = new FileReader();
-      reader.addEventListener('load', () => this.imageUrl.push ( reader.result as string));
-      reader.readAsDataURL(new Blob([picture.imageData]));
-    });
 
-  });
-  this.feedService.getImage(1).subscribe((data) => {
-    console.log(data);
-   
-      const reader = new FileReader();
-      reader.addEventListener('load', () => this.singularImageUrl =  ( reader.result as string));
-      reader.readAsDataURL(new Blob([data]));
-   
-
-  });
   }
   /*
   * Gets all tweets from the backend.
@@ -67,7 +50,14 @@ export class FeedComponent implements OnInit {
     this.feedService.getFeed().subscribe((response:Tweet[]) => {
       console.log(response);
       this.tweets = response;
-    });
+      this.tweets.forEach((tweet) => {
+        this.feedService.getImage(tweet.user.profilePicture.id).subscribe((response:Blob) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => this.singularImageUrl.push ( reader.result as string));
+        reader.readAsDataURL(new Blob([response]));
+        });
+      });
+  });
   }
   /*
   * Deletes a tweet from the backend.

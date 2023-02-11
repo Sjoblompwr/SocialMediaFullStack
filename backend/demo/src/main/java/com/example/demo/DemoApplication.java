@@ -65,7 +65,7 @@ public class DemoApplication {
 					"jessica.brown@hotmail.com", "michael.jackson@gmail.com", "amy.lee@hotmail.com" };
 			List<User> users = new ArrayList<>();
 			for (int i = 0; i < names.length; i++) {
-				User user = new User(names[i], emails[i], this.bCryptPasswordEncoder().encode("123"), null, null);
+				User user = new User(names[i], emails[i], this.bCryptPasswordEncoder().encode("123"), profilePictureRepository.getReferenceById(1L), null);
 				users.add(user);
 				userRepository.save(user);
 
