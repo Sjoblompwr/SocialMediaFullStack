@@ -33,7 +33,7 @@ export class StatusFeedComponent implements OnInit {
     id: 1,
     username: "davidsjoblom",
     email: "davidsjoblom@hotmail.se",
-    profilePicture: {id:1, imageData: new Uint8Array(0)},
+    profilePicture: {id:1, image: ""},
     friends: []
 
   }

@@ -20,12 +20,12 @@ export class FeedComponent implements OnInit {
     id: 1,
     username: "davidsjoblom",
     email: "davidsjoblom@hotmail.se",
-    profilePicture: {id:1, imageData: new Uint8Array(0)},
+    profilePicture: {id:1,image:""},
     friends: []
 
   }
 
-  imageUrl: string[] = [];
+  imageUrl: string = "";
   singularImageUrl: string[] = [];
 
   public tweets: Tweet[] = [];
@@ -40,8 +40,8 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     localStorage.setItem("user", JSON.stringify(this.user));
    this.getAllTweets();
-   //Need to create picure interface and such.
-
+  //  Need to create picure interface and such.
+  
   }
   /*
   * Gets all tweets from the backend.
@@ -50,10 +50,13 @@ export class FeedComponent implements OnInit {
     this.feedService.getFeed().subscribe((response:Tweet[]) => {
       console.log(response);
       this.tweets = response;
-      this.tweets.forEach((tweet) => {
-        this.feedService.getImage(tweet.user.profilePicture.id).subscribe((response:Blob) => {
+      this.tweets.reverse();
+      this.singularImageUrl = new Array(this.tweets.length);
+      this.tweets.forEach((tweet,index) => {
+        this.feedService.getImage(tweet.user.profilePicture.id).subscribe((response) => {
+        console.log(tweet.user.profilePicture.id)
         const reader = new FileReader();
-        reader.addEventListener('load', () => this.singularImageUrl.push ( reader.result as string));
+        reader.addEventListener('load', () => this.singularImageUrl[index] = ( reader.result as string));
         reader.readAsDataURL(new Blob([response]));
         });
       });
