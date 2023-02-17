@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="profile-container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="profile-picture">
+            <!-- <img src="{{ user.profilePicture.image }}" alt="Profile Picture" class="img-thumbnail"> -->
+            <button class="btn btn-primary mt-3" data-toggle="modal">Change Settings</button>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="user-info">
+            <h2 class="username">{{ user?.username }}</h2>
+            <p class="email"><i class="fas fa-envelope"></i> {{ user?.email }}</p>
+            <p class="friends"><i class="fas fa-user-friends"></i> {{ user?.friends?.length }} friends</p>
+            <div class="bio">
+              <h3>About Me</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor eros id ipsum faucibus, ac aliquam velit congue. 
+                  Nullam in lorem vel dolor sagittis feugiat. 
+                  Donec vel ante vitae mauris fermentum rutrum. Proin venenatis turpis vel nisl aliquam, sit amet lacinia lorem bibendum.</p>
+            </div>
+            <div class="interests">
+              <h3>Interests</h3>
+              <ul class="list-unstyled">
+                <li>Cooking</li>
+                <li>Hiking</li>
+                <li>Reading</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

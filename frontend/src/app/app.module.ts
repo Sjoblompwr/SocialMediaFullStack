@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './componenets/register/register.component';
 import { AuthInterceptor } from './componenets/service/interceptor/auth-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ProfileComponent } from './componenets/profile/profile.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     CommentModalComponent,
     StatusFeedComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
     
   ],
   imports: [
