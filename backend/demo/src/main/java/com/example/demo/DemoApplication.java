@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.type.descriptor.java.LongJavaType;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -47,7 +48,7 @@ public class DemoApplication {
 		return args -> {
 
 			byte[] imageData;
-			String[] picName = { "BlackWoman", "ClarkKent", "Duche", "Frank"};
+			String[] picName = { "BlackWoman", "ClarkKent", "Duche", "Frank","SwedishSurfer","Frank"};
 			for (int i = 0; i < picName.length; i++) {
 				try {
 				Path path = Paths.get("C:/Users/Dator/Desktop/SocialMedia/SocialMediaFullStack/backend/demo/src/main/resources/pictures/"+picName[i] +".jpg");
@@ -65,7 +66,7 @@ public class DemoApplication {
 					"jessica.brown@hotmail.com", "michael.jackson@gmail.com", "amy.lee@hotmail.com" };
 			List<User> users = new ArrayList<>();
 			for (int i = 0; i < names.length; i++) {
-				User user = new User(names[i], emails[i], this.bCryptPasswordEncoder().encode("123"), null, null);
+				User user = new User(names[i], emails[i], this.bCryptPasswordEncoder().encode("123"), profilePictureRepository.getReferenceById((long)i +1), null);
 				users.add(user);
 				userRepository.save(user);
 

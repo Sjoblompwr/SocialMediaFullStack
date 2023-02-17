@@ -20,13 +20,14 @@ export class FeedComponent implements OnInit {
     id: 1,
     username: "davidsjoblom",
     email: "davidsjoblom@hotmail.se",
-    profileImageUrl: "",
+    profilePicture: {id:1,image:""},
     friends: []
 
   }
 
-  imageUrl: string[] = [];
-  singularImageUrl: string = "";
+  imageUrl: string = "";
+  singularImageUrl: string[] = [];
+
   public tweets: Tweet[] = [];
   public tweet = {
     id: 1,
@@ -39,26 +40,8 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     localStorage.setItem("user", JSON.stringify(this.user));
    this.getAllTweets();
-   //Need to create picure interface and such.
-  this.feedService.getAllImages().subscribe((data:ArrayBuffer[]) => {
-    console.log(data);
+  //  Need to create picure interface and such.
   
-    data.forEach((image) =>{
-      const reader = new FileReader();
-      reader.addEventListener('load', () => this.imageUrl.push ( reader.result as string));
-      reader.readAsDataURL(new Blob([new Uint8Array(image)], { type: 'image/jpeg' }));
-    });
-
-  });
-  this.feedService.getImage(1).subscribe((data) => {
-    console.log(data);
-   
-      const reader = new FileReader();
-      reader.addEventListener('load', () => this.singularImageUrl =  ( reader.result as string));
-      reader.readAsDataURL(new Blob([data]));
-   
-
-  });
   }
   /*
   * Gets all tweets from the backend.
@@ -67,7 +50,17 @@ export class FeedComponent implements OnInit {
     this.feedService.getFeed().subscribe((response:Tweet[]) => {
       console.log(response);
       this.tweets = response;
-    });
+      this.tweets.reverse();
+      this.singularImageUrl = new Array(this.tweets.length);
+      this.tweets.forEach((tweet,index) => {
+        this.feedService.getImage(tweet.user.profilePicture.id).subscribe((response) => {
+        console.log(tweet.user.profilePicture.id)
+        const reader = new FileReader();
+        reader.addEventListener('load', () => this.singularImageUrl[index] = ( reader.result as string));
+        reader.readAsDataURL(new Blob([response]));
+        });
+      });
+  });
   }
   /*
   * Deletes a tweet from the backend.
