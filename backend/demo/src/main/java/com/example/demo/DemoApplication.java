@@ -50,7 +50,7 @@ public class DemoApplication {
 			String[] picName = { "BlackWoman", "ClarkKent", "Duche", "Frank"};
 			for (int i = 0; i < picName.length; i++) {
 				try {
-				Path path = Paths.get("C:/Users/David/Desktop/Twatter/backend/demo/src/main/resources/pictures/"+picName[i] +".jpg");
+				Path path = Paths.get("C:/Users/Dator/Desktop/SocialMedia/SocialMediaFullStack/backend/demo/src/main/resources/pictures/"+picName[i] +".jpg");
 				imageData = Files.readAllBytes(path);
 				ProfilePicture profilePicture = new ProfilePicture(imageData);
 				profilePictureRepository.save(profilePicture);

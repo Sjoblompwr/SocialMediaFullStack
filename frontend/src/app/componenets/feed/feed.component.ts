@@ -40,13 +40,13 @@ export class FeedComponent implements OnInit {
     localStorage.setItem("user", JSON.stringify(this.user));
    this.getAllTweets();
    //Need to create picure interface and such.
-  this.feedService.getAllImages().subscribe((data:any) => {
+  this.feedService.getAllImages().subscribe((data:ArrayBuffer[]) => {
     console.log(data);
-    let temp: profilePicture[] = data;
-    temp.forEach((picture) =>{
+  
+    data.forEach((image) =>{
       const reader = new FileReader();
       reader.addEventListener('load', () => this.imageUrl.push ( reader.result as string));
-      reader.readAsDataURL(new Blob([picture.imageData]));
+      reader.readAsDataURL(new Blob([new Uint8Array(image)], { type: 'image/jpeg' }));
     });
 
   });

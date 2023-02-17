@@ -42,9 +42,10 @@ public class ProfilePictureResource {
     
 
     @GetMapping("/all")
-    public ResponseEntity<List<ProfilePicture>> getAllProfilePictures() {
+    public ResponseEntity<List<byte[]>> getAllProfilePictures() {
         List<ProfilePicture> pictures = profilePictureService.getAllPictures();
-        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(pictures);
+        List<byte[]> images = pictures.stream().map(picture -> picture.getImageData()).toList();
+        return ResponseEntity.ok().body(images);
     }
     
 
