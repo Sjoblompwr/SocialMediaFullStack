@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './componenets/register/register.component';
 import { AuthInterceptor } from './componenets/service/interceptor/auth-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ProfileComponent } from './componenets/profile/profile.component';
 import { FriendsComponent } from './componenets/friends/friends.component';
 
 
@@ -29,6 +30,7 @@ import { FriendsComponent } from './componenets/friends/friends.component';
     StatusFeedComponent,
     LoginComponent,
     RegisterComponent,
+    ProfileComponent,
     FriendsComponent
     
   ],

@@ -56,7 +56,7 @@ export class FeedService {
     return this.http.get(`${this.url}/profile-picture/` + id, { responseType: 'blob' });
 }
 
-getAllImages():Observable<profilePicture[]> {
-    return this.http.get<profilePicture[]>(`${this.url}/profile-picture/all`);
+getAllImages(): Observable<ArrayBuffer[]> {
+    return this.http.get<ArrayBuffer[]>(`${this.url}/profile-picture/all`);
 }
 }

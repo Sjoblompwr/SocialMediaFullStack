@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
     friends: {},
   
   }
+  public numberOfFriends = 0;
   ngOnInit(): void {
   }
 
