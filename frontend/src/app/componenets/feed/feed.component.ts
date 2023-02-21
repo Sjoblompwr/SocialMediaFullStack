@@ -53,7 +53,6 @@ export class FeedComponent implements OnInit {
       this.singularImageUrl = new Array(this.tweets.length);
       this.tweets.forEach((tweet,index) => {
         this.feedService.getImage(tweet.user.profilePicture.id).subscribe((response) => {
-        console.log(tweet.user.profilePicture.id)
         const reader = new FileReader();
         reader.addEventListener('load', () => this.singularImageUrl[index] = ( reader.result as string));
         reader.readAsDataURL(new Blob([response]));

@@ -4,7 +4,8 @@
             <app-navbar></app-navbar>
         </div>
         <div class="col" style="border-style:solid">
-            <router-outlet></router-outlet>
+            <app-login *ngIf="!(loginComponent.isLoggedIn | async)"></app-login>
+            <router-outlet *ngIf="(loginComponent.isLoggedIn|async)"></router-outlet>
         </div>
         <div class="col-1" style="border-style:dashed">
             <app-right-side-bar></app-right-side-bar>

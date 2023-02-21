@@ -13,34 +13,29 @@ import { FeedService } from '../service/feed.service';
 export class StatusFeedComponent implements OnInit {
   href!: string;
 
-  someSubscription: any;  
+  someSubscription: any;
   constructor(
     private modalService: MdbModalService,
-    private router:Router,
-    private feedService:FeedService,
-    private route: ActivatedRoute) { 
-  
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
-    this.someSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        // Here is the dashing line comes in the picture.
-        // You need to tell the router that, you didn't visit or load the page previously, so mark the navigated flag to false as below.
-        this.router.navigated = false;
-      }
-    });}
+    private router: Router,
+    private feedService: FeedService) {
+
+      this.someSubscription = this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.router.navigated = false;
+        }
+      });
+  }
   public user = {
     id: 1,
     username: "davidsjoblom",
     email: "davidsjoblom@hotmail.se",
-    profilePicture: {id:1, image: ""},
+    profilePicture: { id: 1, image: "" },
     friends: []
 
   }
 
   public tweets: Tweet[] = [];
-  public tweet:Tweet = {
+  public tweet: Tweet = {
     id: 1,
     message: "",
     user: this.user,
@@ -48,50 +43,63 @@ export class StatusFeedComponent implements OnInit {
     comments: this.tweets,
     commentBoolean: false
   }
+
+
   ngOnInit(): void {
     this.href = this.router.url;
     const username = this.href.split("/")[1];
     const tweetId = +this.href.split("/")[3];
-    console.log(username);
-    console.log(tweetId); 
     this.getTweetById(tweetId);
   }
 
-  public getTweetById(tweetId:number) {
-    this.feedService.getTweetById(tweetId).subscribe((response:Tweet) => {
+  public getTweetById(tweetId: number) {
+    this.feedService.getTweetById(tweetId).subscribe((response: Tweet) => {
       this.tweet = response;
+      this.tweets = new Array(this.tweet.comments.length);
+      this.feedService.getImage(this.tweet.user.id).subscribe((response: any) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => this.tweet.user.profilePicture.image = (reader.result as string));
+        reader.readAsDataURL(new Blob([response]));
+      });
+      this.tweet.comments.forEach((comment: Tweet, index) => {
+        this.feedService.getImage(comment.user.id).subscribe((response: any) => {
+          const reader = new FileReader();
+          reader.addEventListener('load', () => this.tweets[index].user.profilePicture.image = (reader.result as string));
+          reader.readAsDataURL(new Blob([response]));
+        });
+      });
     });
   }
 
-    /*
-  * Opens a modal for commenting on a tweet.
-  */
-    public commentModal(tweet: Tweet) {
-      this.modalService.open(CommentModalComponent, {
-        data: { title: 'Custom title', tweet: tweet }
-      }).onClose.subscribe((message: string) => {
-        if (message.length > 0) {
-  
-          let newTweet = {
-            id: 1,
-            message: message,
-            user: JSON.parse(localStorage.getItem("user") as string),
-            likes: [],
-            comments: [],
-            commentBoolean: true
-          };
-          let response = {responeToId: tweet.id, message: message};
-          tweet.comments.push(newTweet);
-          this.feedService.responseTweet(response).subscribe((response:Tweet) => {
-            console.log(response);
-          });
-        }
-      });
-    }
+  /*
+* Opens a modal for commenting on a tweet.
+*/
+  public commentModal(tweet: Tweet) {
+    this.modalService.open(CommentModalComponent, {
+      data: { title: 'Custom title', tweet: tweet }
+    }).onClose.subscribe((message: string) => {
+      if (message.length > 0) {
 
-      /*
-  * User likes a tweet.
-   */
+        let newTweet = {
+          id: 1,
+          message: message,
+          user: JSON.parse(localStorage.getItem("user") as string),
+          likes: [],
+          comments: [],
+          commentBoolean: true
+        };
+        let response = { responeToId: tweet.id, message: message };
+        tweet.comments.push(newTweet);
+        this.feedService.responseTweet(response).subscribe((response: Tweet) => {
+          console.log(response);
+        });
+      }
+    });
+  }
+
+  /*
+* User likes a tweet.
+*/
   public like(tweet: Tweet) {
     let currentUser = JSON.parse(localStorage.getItem("user") as string);
     let like = {
@@ -102,9 +110,9 @@ export class StatusFeedComponent implements OnInit {
     //Need to implement to send like to backend.
   }
 
-  public reRoute(username:string,tweetId:number) {
+  public reRoute(username: string, tweetId: number) {
     this.router.navigate(["/" + username + "/status/" + tweetId]);
-    
+
   }
 
 

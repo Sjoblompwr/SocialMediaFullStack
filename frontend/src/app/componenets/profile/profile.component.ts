@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { User } from '../interfaces/user';
 import { FeedService } from '../service/feed.service';
 import { UserService } from '../service/user.service';
@@ -10,10 +10,17 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  someSubscription: any;
 
   constructor(private userService:UserService,
               private feedService:FeedService,
-              private router:Router) { }
+              private router:Router) { 
+                this.someSubscription = this.router.events.subscribe((event) => {
+                  if (event instanceof NavigationEnd) {
+                    this.router.navigated = false;
+                  }
+                });
+              }
 
   user:User
   = {   id: 1,

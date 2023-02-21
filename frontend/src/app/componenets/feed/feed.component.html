@@ -24,7 +24,7 @@
         Loading images...
       </div>
       <div *ngIf="tweets && singularImageUrl.length === tweets.length">
-        <!-- Render tweets and images here -->      
+        <!-- Render tweets and images here -->
         <div *ngFor="let tweet of tweets; let i = index;">
           <div *ngIf="!tweet.commentBoolean">
             <img class="d-flex g-width-50 g-height-50 rounded-circle" [src]="singularImageUrl[i]"
@@ -41,9 +41,10 @@
                     <i class="fa fa-thumbs-up"></i>
                     {{tweet.likes.length}}
                   </a>
+                    <i class="fa fa-comment"></i>
+                    {{tweet.comments.length}}
+
                   <span class="message-body-date">Date</span>
-                  <i class="bi bi-chat"></i>
-                  {{tweet.comments.length}}
                 </li>
 
                 <i></i>

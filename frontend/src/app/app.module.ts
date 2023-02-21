@@ -18,6 +18,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileComponent } from './componenets/profile/profile.component';
 import { FriendsComponent } from './componenets/friends/friends.component';
 import { MdbModalModule, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomRouteReuseStrategy } from './componenets/service/ReuseStrategy/custom-route-reuse-strategy.service';
 
 
 
@@ -43,7 +45,10 @@ import { MdbModalModule, MdbModalService } from 'mdb-angular-ui-kit/modal';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },MdbModalService],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,
+     multi: true },
+     MdbModalService,
+     { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

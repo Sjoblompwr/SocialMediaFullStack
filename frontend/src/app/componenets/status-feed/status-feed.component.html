@@ -3,7 +3,7 @@
         <div class="col-md-8">
             <div>
                 <img class="d-flex g-width-50 g-height-50 rounded-circle"
-                    src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description">
+                    [src]="tweet.user.profilePicture.image" alt="Tweeter image">
                 <div class="media-body u-shadow-v18 g-bg-secondary">
                     <div>
                         <h5>{{tweet.user.username}}</h5>
@@ -28,10 +28,11 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
-            <div *ngFor="let comment of tweet.comments">
+        <div class="col-md-8"
+                *ngIf="this.tweets.length === this.tweet.comments.length">
+            <div *ngFor="let comment of tweet.comments; let i = index;">
                 <img class="d-flex g-width-50 g-height-50 rounded-circle"
-                    src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description">
+                    [src]="tweets[i].user.profilePicture.image" alt="Commentator image">
                 <div class="media-body u-shadow-v18 g-bg-secondary">
                     <div>
                         <h5>{{comment.user.username}}</h5>
