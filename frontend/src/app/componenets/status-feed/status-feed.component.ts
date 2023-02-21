@@ -14,7 +14,8 @@ export class StatusFeedComponent implements OnInit {
   href!: string;
 
   someSubscription: any;  
-  constructor(private modalService: MdbModalService,
+  constructor(
+    private modalService: MdbModalService,
     private router:Router,
     private feedService:FeedService,
     private route: ActivatedRoute) { 

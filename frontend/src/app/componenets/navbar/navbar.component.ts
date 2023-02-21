@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../interfaces/user';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,17 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
-  public user = {
+  constructor(private userService:UserService) { }
+  public user:User = {
     id: 1,
     username: "davidsjoblom",
     email: "davidsjoblom@hotmail.se",
-    profileImageUrl: "",
-    friends: {},
-  
-  }
+    profilePicture: {id:1,image:""},
+    friends: []
+};
   public numberOfFriends = 0;
   ngOnInit(): void {
+    this.userService.getLoggedInUser().subscribe((response:User) => {
+      this.user = response;
+      this.numberOfFriends = this.user.friends.length;
+    });
   }
 
 }

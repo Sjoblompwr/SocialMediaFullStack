@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommentModalComponent } from '../comment-modal/comment-modal.component';
 import { Tweet } from '../interfaces/tweet';
-import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { FeedService } from '../service/feed.service';
-import { profilePicture } from '../interfaces/profilePicture';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-feed',

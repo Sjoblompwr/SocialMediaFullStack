@@ -7,7 +7,6 @@ import { NavbarComponent } from './componenets/navbar/navbar.component';
 import { FeedComponent } from './componenets/feed/feed.component';
 import { RightSideBarComponent } from './componenets/right-side-bar/right-side-bar.component';
 import { CommentModalComponent } from './componenets/comment-modal/comment-modal.component';
-import { MdbModalModule, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StatusFeedComponent } from './componenets/status-feed/status-feed.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +17,8 @@ import { AuthInterceptor } from './componenets/service/interceptor/auth-intercep
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileComponent } from './componenets/profile/profile.component';
 import { FriendsComponent } from './componenets/friends/friends.component';
+import { MdbModalModule, MdbModalService } from 'mdb-angular-ui-kit/modal';
+
 
 
 @NgModule({
@@ -35,10 +36,10 @@ import { FriendsComponent } from './componenets/friends/friends.component';
     
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MdbModalModule,
     NgbModule,
+    BrowserModule,
+    MdbModalModule,
+    AppRoutingModule,
     HttpClientModule,
     FormsModule
   ],
