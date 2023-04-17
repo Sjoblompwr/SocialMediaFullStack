@@ -35,4 +35,8 @@ export class LoginComponent {
     });
 
   }
+
+  public logout(){
+    this._isLoggedIn.next(false);
+  }
 }

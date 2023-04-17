@@ -1,14 +1,14 @@
 <div class="container" style="background-color:grey;">
    <div class="row">
         <div class="col-2" style="border-style:dashed">
-            <app-navbar></app-navbar>
+            <app-navbar *ngIf="(loginComponent.isLoggedIn|async)"></app-navbar>
         </div>
         <div class="col" style="border-style:solid">
             <app-login *ngIf="!(loginComponent.isLoggedIn | async)"></app-login>
             <router-outlet *ngIf="(loginComponent.isLoggedIn|async)"></router-outlet>
         </div>
         <div class="col-1" style="border-style:dashed">
-            <app-right-side-bar></app-right-side-bar>
+            <app-right-side-bar *ngIf="(loginComponent.isLoggedIn|async)"></app-right-side-bar>
         </div>
    </div>
 </div>

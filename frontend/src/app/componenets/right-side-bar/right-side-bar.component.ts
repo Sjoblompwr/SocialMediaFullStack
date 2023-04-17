@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-right-side-bar',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./right-side-bar.component.css']
 })
 export class RightSideBarComponent implements OnInit {
+  loginComponent:LoginComponent;
 
-  constructor() { }
+  constructor(loginComponent:LoginComponent) {this.loginComponent = loginComponent }
 
   ngOnInit(): void {
+  }
+
+
+  public logout(){
+    localStorage.removeItem("token");
+    this.loginComponent.logout();
   }
 
 }

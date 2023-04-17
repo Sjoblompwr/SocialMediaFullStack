@@ -29,6 +29,11 @@ import lombok.extern.slf4j.Slf4j;
 import com.example.demo.repository.ProfilePictureRepository;
 import com.example.demo.repository.TweetRepository;
 
+/**
+ * Main class for the application.
+ *
+ * @author David Sjöblom
+ */
 @SpringBootApplication
 @Slf4j
 @EnableConfigurationProperties(RsaKeyProperties.class)

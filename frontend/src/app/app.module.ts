@@ -20,6 +20,7 @@ import { FriendsComponent } from './componenets/friends/friends.component';
 import { MdbModalModule, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from './componenets/service/ReuseStrategy/custom-route-reuse-strategy.service';
+import { SettingsModalComponent } from './componenets/modals/settings-modal/settings-modal.component';
 
 
 
@@ -34,7 +35,8 @@ import { CustomRouteReuseStrategy } from './componenets/service/ReuseStrategy/cu
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    FriendsComponent
+    FriendsComponent,
+    SettingsModalComponent
     
   ],
   imports: [
