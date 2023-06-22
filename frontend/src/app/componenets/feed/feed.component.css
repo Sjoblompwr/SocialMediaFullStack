@@ -34,3 +34,15 @@ body{
 .message-body-date{
     padding-left : 20px;
 }
+
+.comment-feed-wrapper {
+    position: relative;
+    min-height: 100vh; /* Set the minimum height to fill the viewport */
+  }
+  
+  #updateStatusSection {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  

@@ -1,12 +1,21 @@
-<div>
+<div class="comment-feed-wrapper">
+  <!-- Existing elements and comments -->
+
+  <div id="updateStatusSection" [hidden]="!showUpdateStatusSection">
+
   <form>
     <div class='active'><a>Update status</a></div>
     <textarea id="status" class="form-control" placeholder="What's on your mind?"></textarea>
     <div class='pull-right'><a (click)="updateStatus()" class='btn btn-primary btn-xs'>Post</a></div>
   </form>
+
 </div>
 
-
+<br>  
+<br>
+<br>
+<br>
+<br>
 
 <!--                                                      COMMENTS                                                    -->
 
@@ -56,4 +65,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
