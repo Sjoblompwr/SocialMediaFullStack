@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md static">
             <div class="profile-card" >
-                <img src="{{ user.profilePicture.image }}" alt="user-image" class="profile-photo" (click)="reRoute()">
+                <img src="{{ profilePicture }}" alt="user-image" class="profile-photo" (click)="reRoute()">
             	<h5><a [routerLink]="['/profile/',user.id]" class="text-white">{{user.username}}</a></h5>
             	<a [routerLink]="['/friends']" class="text-white"><i class="fa fa-user"></i> {{numberOfFriends}} friends</a>
             </div><!--profile card ends-->

@@ -26,7 +26,7 @@ export class FeedComponent implements OnInit {
 
   imageUrl: string = "";
   singularImageUrl: string[] = [];
-  showUpdateStatusSection: boolean = false;
+  showUpdateStatusSection: boolean = true;
   distanceFromTop: number = 20;
   prevScrollPosition: number = 0;
 
@@ -42,7 +42,6 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     localStorage.setItem("user", JSON.stringify(this.user));
    this.getAllTweets();
-   this.showUpdateStatusSection = false;
   //  Need to create picure interface and such.
   
   }
@@ -149,7 +148,7 @@ export class FeedComponent implements OnInit {
     const scrollDirection = currentScrollPosition > this.prevScrollPosition ? 'down' : 'up';
 
     // Toggle the visibility of the section based on the scroll direction and position
-    if (scrollDirection === 'down' && currentScrollPosition >= this.distanceFromTop) {
+    if (scrollDirection === 'down') {
       this.showUpdateStatusSection = false; // Hide the section when scrolling down and beyond the distance
     } else {
       this.showUpdateStatusSection = true; // Show the section in all other cases
@@ -158,4 +157,6 @@ export class FeedComponent implements OnInit {
     // Update the previous scroll position
     this.prevScrollPosition = currentScrollPosition;
   }
+
+  
 }
