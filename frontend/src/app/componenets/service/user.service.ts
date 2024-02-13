@@ -8,6 +8,7 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 export class UserService {
+
   readonly url = environment.url;
   constructor(private http:HttpClient) { }
   /*
@@ -17,6 +18,9 @@ export class UserService {
     return this.http.get<User>(`${this.url}/user`);
   }
 
+  getUserById(userId: string):Observable<User> {
+    return this.http.get<User>(`${this.url}/user/${userId}`);
+  }
 
   
 }

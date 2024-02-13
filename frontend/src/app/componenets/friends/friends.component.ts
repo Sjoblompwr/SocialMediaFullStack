@@ -13,7 +13,15 @@ export class FriendsComponent implements OnInit {
   singularImageUrl: any[] = [];
 
   constructor(private userService:UserService,private feedService:FeedService) { }
-  user?:User;
+  user:User
+  = {
+    id: 1,
+    username: "davidsjoblom",
+    email: "davidsjoblom@hotmail.se",
+    profilePicture: {id:1,image:""},
+    friends: []
+};
+
   ngOnInit(): void {
     this.userService.getLoggedInUser().subscribe((response:User) => {
       this.user = response;
@@ -24,10 +32,9 @@ export class FriendsComponent implements OnInit {
   }
 
   getPictures(){
-    this.singularImageUrl = new Array(this.user?.friends.length);
-    this.user?.friends.forEach((friend,index) => {
+    this.singularImageUrl = new Array(this.user.friends.length);
+    this.user.friends.forEach((friend,index) => {
       this.feedService.getImage(friend.profilePicture.id).subscribe((response) => {
-        console.log(friend.profilePicture.id)
       const reader = new FileReader();
       reader.addEventListener('load', () => this.singularImageUrl[index] = ( reader.result as string));
       reader.readAsDataURL(new Blob([response]));

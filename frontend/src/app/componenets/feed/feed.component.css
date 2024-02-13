@@ -34,3 +34,20 @@ body{
 .message-body-date{
     padding-left : 20px;
 }
+
+.comment-feed-wrapper {
+    position: relative;
+    min-height: 100vh; /* Set the minimum height to fill the viewport */
+  }
+  
+  #updateStatusSection {
+    position: sticky;
+    background-color:rgb(38, 139, 162);
+    top: 0;
+    z-index: 999;
+  }
+  
+  .add-padding {
+    padding-bottom: 50px; /* Adjust the padding value as desired */
+  }
+  

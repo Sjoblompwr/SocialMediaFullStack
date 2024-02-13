@@ -3,15 +3,15 @@
       <div class="row">
         <div class="col-md-3">
           <div class="profile-picture">
-            <!-- <img src="{{ user.profilePicture.image }}" alt="Profile Picture" class="img-thumbnail"> -->
-            <button class="btn btn-primary mt-3" data-toggle="modal">Change Settings</button>
+             <img src="{{ user.profilePicture.image }}" alt="Profile Picture" class="img-thumbnail"> 
+            <button class="btn btn-primary mt-3" data-toggle="modal" *ngIf="user.id === loggedInUser.id">Change Settings</button>
           </div>
         </div>
         <div class="col-md-9">
           <div class="user-info">
-            <h2 class="username">{{ user?.username }}</h2>
-            <p class="email"><i class="fas fa-envelope"></i> {{ user?.email }}</p>
-            <p class="friends"><i class="fas fa-user-friends"></i> {{ user?.friends?.length }} friends</p>
+            <h2 class="username">{{ user.username }}</h2>
+            <p class="email">{{ user.email }}</p>
+            <p class="friends"><i class="fas fa-user-friends"></i> {{ user.friends.length }} friends</p>
             <div class="bio">
               <h3>About Me</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor eros id ipsum faucibus, ac aliquam velit congue. 

@@ -29,6 +29,11 @@ import lombok.extern.slf4j.Slf4j;
 import com.example.demo.repository.ProfilePictureRepository;
 import com.example.demo.repository.TweetRepository;
 
+/**
+ * Main class for the application.
+ *
+ * @author David Sjöblom
+ */
 @SpringBootApplication
 @Slf4j
 @EnableConfigurationProperties(RsaKeyProperties.class)
@@ -51,7 +56,7 @@ public class DemoApplication {
 			String[] picName = { "BlackWoman", "ClarkKent", "Duche", "Frank","SwedishSurfer","Frank"};
 			for (int i = 0; i < picName.length; i++) {
 				try {
-				Path path = Paths.get("C:/Users/Dator/Desktop/SocialMedia/SocialMediaFullStack/backend/demo/src/main/resources/pictures/"+picName[i] +".jpg");
+				Path path = Paths.get("backend/demo/src/main/resources/pictures/"+picName[i] +".jpg");
 				imageData = Files.readAllBytes(path);
 				ProfilePicture profilePicture = new ProfilePicture(imageData);
 				profilePictureRepository.save(profilePicture);

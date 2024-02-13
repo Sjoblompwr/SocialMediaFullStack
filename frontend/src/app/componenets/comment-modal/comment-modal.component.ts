@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { FeedComponent } from '../feed/feed.component';
 import { FeedService } from '../service/feed.service';
+import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-comment-modal',
@@ -11,7 +11,7 @@ import { FeedService } from '../service/feed.service';
 export class CommentModalComponent{
 
 
-  constructor(public modalRef: MdbModalRef<FeedComponent>,private feedService:FeedService) { }
+  constructor(private modalRef:MdbModalRef<FeedComponent>,private feedService:FeedService) { }
 
   title: string | null = null;
   public user = {

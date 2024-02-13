@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommentModalComponent } from '../comment-modal/comment-modal.component';
 import { Tweet } from '../interfaces/tweet';
-import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { FeedService } from '../service/feed.service';
-import { profilePicture } from '../interfaces/profilePicture';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-feed',
@@ -27,6 +26,9 @@ export class FeedComponent implements OnInit {
 
   imageUrl: string = "";
   singularImageUrl: string[] = [];
+  showUpdateStatusSection: boolean = true;
+  distanceFromTop: number = 20;
+  prevScrollPosition: number = 0;
 
   public tweets: Tweet[] = [];
   public tweet = {
@@ -54,7 +56,6 @@ export class FeedComponent implements OnInit {
       this.singularImageUrl = new Array(this.tweets.length);
       this.tweets.forEach((tweet,index) => {
         this.feedService.getImage(tweet.user.profilePicture.id).subscribe((response) => {
-        console.log(tweet.user.profilePicture.id)
         const reader = new FileReader();
         reader.addEventListener('load', () => this.singularImageUrl[index] = ( reader.result as string));
         reader.readAsDataURL(new Blob([response]));
@@ -137,4 +138,25 @@ export class FeedComponent implements OnInit {
       });
     });
   }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: any) {
+    // Get the scroll position
+    const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    // Calculate the scroll direction
+    const scrollDirection = currentScrollPosition > this.prevScrollPosition ? 'down' : 'up';
+
+    // Toggle the visibility of the section based on the scroll direction and position
+    if (scrollDirection === 'down') {
+      this.showUpdateStatusSection = false; // Hide the section when scrolling down and beyond the distance
+    } else {
+      this.showUpdateStatusSection = true; // Show the section in all other cases
+    }
+
+    // Update the previous scroll position
+    this.prevScrollPosition = currentScrollPosition;
+  }
+
+  
 }

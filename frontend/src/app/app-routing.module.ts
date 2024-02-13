@@ -12,7 +12,7 @@ const routes: Routes = [
   {path:":username/status/:tweetId",component:StatusFeedComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path:'profile',component:ProfileComponent},
+  {path:'profile/:userId',component:ProfileComponent},
   {path: 'friends', component: FriendsComponent},
 ];
 
