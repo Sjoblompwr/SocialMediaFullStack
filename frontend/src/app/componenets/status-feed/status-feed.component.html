@@ -32,7 +32,8 @@
                 *ngIf="this.tweets.length === this.tweet.comments.length">
             <div *ngFor="let comment of tweet.comments; let i = index;">
                 <img class="d-flex g-width-50 g-height-50 rounded-circle"
-                    [src]="tweets[i].user.profilePicture.image" alt="Commentator image">
+                    [src]="comment.user.profilePicture.image" 
+                    alt="Commentator image">
                 <div class="media-body u-shadow-v18 g-bg-secondary">
                     <div>
                         <h5>{{comment.user.username}}</h5>

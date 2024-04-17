@@ -60,12 +60,15 @@ export class StatusFeedComponent implements OnInit {
         const reader = new FileReader();
         reader.addEventListener('load', () => this.tweet.user.profilePicture.image = (reader.result as string));
         reader.readAsDataURL(new Blob([response]));
+        console.log("Doneso" + this.tweet.user.profilePicture.image)
       });
       this.tweet.comments.forEach((comment: Tweet, index) => {
         this.feedService.getImage(comment.user.id).subscribe((response: any) => {
           const reader = new FileReader();
-          reader.addEventListener('load', () => this.tweets[index].user.profilePicture.image = (reader.result as string));
+          reader.addEventListener('load', () => this.tweet.comments[index].user.profilePicture.image = (reader.result as string));
           reader.readAsDataURL(new Blob([response]));
+          console.log("Doneso2")
+          console.log("THIS: " + this.tweet.comments[index].user.profilePicture.image)
         });
       });
     });
