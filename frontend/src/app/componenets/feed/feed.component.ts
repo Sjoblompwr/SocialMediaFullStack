@@ -96,9 +96,13 @@ export class FeedComponent implements OnInit {
   * Opens a modal for commenting on a tweet.
   */
   public commentModal(tweet: Tweet) {
-    this.modalService.open(CommentModalComponent, {
-      data: { title: 'Custom title', tweet: tweet }
+    this.modalService.open(CommentModalComponent,{ modalClass:'modal-lg',
+      data: {tweet: tweet }
     }).onClose.subscribe((message: string) => {
+      if(message === undefined) {
+        //If the user closes the modal without writing anything or not a string(hopefully)
+        return;
+      }
       if (message.length > 0) {
 
         let newTweet = {
@@ -156,6 +160,12 @@ export class FeedComponent implements OnInit {
 
     // Update the previous scroll position
     this.prevScrollPosition = currentScrollPosition;
+  }
+
+  autoResizeTextarea(event: any) {
+    const textarea = event.target;
+    textarea.style.height = 'auto';
+    textarea.style.height = (textarea.scrollHeight) + 'px';
   }
 
   

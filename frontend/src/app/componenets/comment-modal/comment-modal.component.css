@@ -1,0 +1,12 @@
+/* Set size of whoever tweeted profile*/
+.g-height-50 {
+    height: 50px;
+}
+/* Set size of whoever tweeted profile*/
+.g-width-50 {
+    width: 50px !important;
+}
+
+.form-control{
+    resize: none;
+}

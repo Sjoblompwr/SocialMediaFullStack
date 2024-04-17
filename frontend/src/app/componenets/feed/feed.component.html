@@ -3,9 +3,9 @@
 
   <div id="updateStatusSection" [hidden]="!this.showUpdateStatusSection" [ngClass]="{'add-padding': showUpdateStatusSection}">
 
-    <form>
+    <form class="update-status-form">
       <div class='active'><a>Update status</a></div>
-      <textarea id="status" class="form-control" placeholder="What's on your mind?"></textarea>
+      <textarea id="status" class="form-control form-control-lg flex-textarea" (input)="autoResizeTextarea($event)"  placeholder="What's on your mind?"></textarea>
       <div class='pull-right'><a (click)="updateStatus()" class='btn btn-primary btn-xs'>Post</a></div>
     </form>
 
@@ -20,7 +20,7 @@
   integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col">
       <div *ngIf="!tweets">
         Loading tweets...
       </div>

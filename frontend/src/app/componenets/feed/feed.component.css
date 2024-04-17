@@ -4,6 +4,24 @@ body{
 }
 
 
+.form-control {
+    resize: none;
+    /*flex text-area in the column direction*/
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+}
+
+.flex-textarea {
+    height: auto;
+    resize: none; /* Disable resizing */
+    overflow: hidden; /* Hide overflow content */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+  }
+  
+
+
 /* Set size of whoever tweeted profile*/
 .g-height-50 {
     height: 50px;

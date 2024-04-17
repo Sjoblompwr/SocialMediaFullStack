@@ -4,8 +4,8 @@
         <div class="col-md static">
             <div class="profile-card" >
                 <img src="{{ profilePicture }}" alt="user-image" class="profile-photo" (click)="reRoute()">
-            	<h5><a [routerLink]="['/profile/',user.id]" class="text-white">{{user.username}}</a></h5>
-            	<a [routerLink]="['/friends']" class="text-white"><i class="fa fa-user"></i> {{numberOfFriends}} friends</a>
+            	<h5><a [routerLink]="['/profile/',user.id]" class="profile-card-text">{{user.username}}</a></h5>
+            	<a [routerLink]="['/friends']" class="profile-card-text"><i class="fa fa-user"></i> {{numberOfFriends}} friends</a>
             </div><!--profile card ends-->
             <ul class="nav-news-feed">
               <li><a  href="#"><i class="fa fa-list-alt icon1"></i><div class="link-text"><a>My Newsfeed</a></div></a></li>

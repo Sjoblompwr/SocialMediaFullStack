@@ -1,12 +1,17 @@
 <div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
+  <h5 class="modal-title" id="exampleModalLabel">
+     {{ tweet.user.username }}</h5>
+  <img class="d-flex g-width-50 g-height-50 rounded-circle" [src]="singularImageUrl" alt="profile picture alttext">
 </div>
+
 <div class="modal-body">
   <p class="tweet-message">{{tweet.message}}</p>
   <br>
-  <textarea id="comment" class="form-control" placeholder="What's on your mind?"></textarea>
+  <textarea id="comment" class="form-control" (input)="autoResizeTextarea($event)" placeholder="What's on your mind?"></textarea>
 
 </div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-primary float-right" (click)="replyToComment()">Reply</button>
-</div>
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary float-right" (click)="replyToComment()">Reply</button>
+  </div>
