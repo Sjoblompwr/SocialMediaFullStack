@@ -57,6 +57,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
 
                         .requestMatchers("/login").permitAll()
+                        .requestMatchers("/hello").permitAll()
                         // .mvcMatchers("/register").permitAll()
                         .anyRequest().authenticated()
 

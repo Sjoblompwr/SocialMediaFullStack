@@ -40,6 +40,8 @@ import com.example.demo.repository.TweetRepository;
 public class DemoApplication {
 
 	public static void main(String[] args) {
+		System.out.println("GOOGLE_APPLICATION_CREDENTIALS: " + System.getenv("GOOGLE_APPLICATION_CREDENTIALS"));
+
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
