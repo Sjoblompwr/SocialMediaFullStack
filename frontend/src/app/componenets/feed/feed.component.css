@@ -1,7 +1,37 @@
+:root{
+    --backgroundcolor: #222831;
+    --other: #31363F;
+    --textcolor: #76ABAE;
+}
+
 body{
     margin-top:20px;
-    background:#eee;
 }
+h5,p{
+    color: #76ABAE;
+    text-decoration: none;
+}
+
+.tweet{
+    border-bottom: white 1px solid;
+    border-top: white 1px solid;
+    padding: 10px;
+}
+
+.tweet-item {
+    color: #76ABAE;
+  }
+.tweet-item button{
+    color: #76ABAE;
+    background-color: #31363F;
+    border: none;
+    width: 15%;
+    border-radius: 50px;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}   
+  
 
 
 .form-control {
@@ -33,7 +63,6 @@ body{
 
 /* Set background for tweet-message div*/
 .g-bg-secondary {
-    background-color: #fafafa !important;
     border-radius: 7px;
 }
 
@@ -60,7 +89,8 @@ body{
   
   #updateStatusSection {
     position: sticky;
-    background-color:rgb(38, 139, 162);
+    /*set background color to be that of app.component.css background-colour*/
+    background-color: var(--backgroundcolor);
     top: 0;
     z-index: 999;
   }

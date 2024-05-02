@@ -40,7 +40,6 @@ import com.example.demo.repository.TweetRepository;
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		System.out.println("GOOGLE_APPLICATION_CREDENTIALS: " + System.getenv("GOOGLE_APPLICATION_CREDENTIALS"));
 
 		SpringApplication.run(DemoApplication.class, args);
 	}
@@ -53,6 +52,11 @@ public class DemoApplication {
 	@Bean
 	CommandLineRunner init(UserRepository userRepository, TweetRepository tweetRepository, ProfilePictureRepository profilePictureRepository) {
 		return args -> {
+
+			if (userRepository.count() > 0) {
+				System.out.println("Database already populated. Skipping data initialization.");
+				return; // Exit the method if data exists
+			}
 
 			byte[] imageData;
 			String[] picName = { "BlackWoman", "ClarkKent", "Duche", "Frank","SwedishSurfer","Frank"};

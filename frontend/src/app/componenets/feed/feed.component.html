@@ -29,7 +29,7 @@
       </div>
       <div *ngIf="tweets && singularImageUrl.length === tweets.length">
         <!-- Render tweets and images here -->
-        <div *ngFor="let tweet of tweets; let i = index;">
+        <div class="tweet" *ngFor="let tweet of tweets; let i = index;">
           <div *ngIf="!tweet.commentBoolean">
             <img class="d-flex g-width-50 g-height-50 rounded-circle" [src]="singularImageUrl[i]"
               alt="Image Description">
@@ -40,7 +40,7 @@
               <p class="tweet-message" [routerLink]="[tweet.user.username,'status',tweet.id]">{{tweet.message}}</p>
               <ul>
 
-                <li>
+                <li class="tweet-item">
                   <a (click)="like(tweet)" style="cursor: pointer;">
                     <i class="fa fa-thumbs-up"></i>
                     {{tweet.likes.length}}
@@ -49,12 +49,11 @@
                     {{tweet.comments.length}}
 
                   <span class="message-body-date">Date</span>
+                  
+                <button type="button" (click)="commentModal(tweet)" class="btn btn-primary pull-right">Reply</button>
                 </li>
-
-                <i></i>
               </ul>
             </div>
-            <button type="button" (click)="commentModal(tweet)" class="btn btn-primary pull-right">Reply</button>
           </div>
         </div>
       </div>

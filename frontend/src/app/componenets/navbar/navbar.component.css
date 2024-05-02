@@ -1,7 +1,18 @@
-body{
-    margin-top:20px;
-    background:#FAFAFA;
+:root{
+  --backgroundcolor: #222831;
+  --other: #31363F;
+  --textcolor: #76ABAE;
 }
+
+.container{
+  border-right: white 1px solid;
+  height: 100%;
+  width: fit-content;
+}
+a,i{
+  color: #76ABAE;
+  font-size: x-large;
+} 
 /*==================================================
   Newsfeed Left Sidebar
   ==================================================*/
@@ -16,7 +27,6 @@ body{
   min-width: 90px;
   border-radius: 4px;
   padding: 30px 30px;
-  color: #fff;
   margin-bottom: 40px;
   padding-top:40px;
 }
@@ -29,14 +39,6 @@ body{
   height: 100px;
   width: 100px;
   border-radius: 20%;
-}
-
-.profile-card h5 a{
-  font-size: 15px;
-}
-
-.profile-card a{
-  font-size: 12px;
 }
 
 @media screen and (max-width: 1260px) {
@@ -61,16 +63,23 @@ ul.nav-news-feed{
   padding-left: 20px;
   padding-right: 20px;
   margin: 0 0 40px 0;
-    
+
   /* background: linear-gradient(to bottom, rgba(39,170,225,.8), rgba(28,117,188,.8)); */
   padding-top:20px;
 }
 
 ul.nav-news-feed li{
   list-style: none;
-  display: block;
+  align-items: center;
   padding: 15px 0;
 }
+
+ul.nav-news-feed li .link-text{
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-bottom: 20px;
+}
+
 
 ul.nav-news-feed li div{
   position: relative;
@@ -86,13 +95,21 @@ ul.nav-news-feed li div::after{
   left: 0;
 }
 
-ul.nav-news-feed li a{color: #fcf9f9;}
 
 ul.nav-news-feed li i{
-  font-size: 18px;
-  margin-right: 15px;
+  font-size: x-large;
+  margin-top: 6px;
   float: left;
+
+
 }
+
+
+ul.nav-news-feed li a:hover {
+  color: #8dc63f; /* Default color on hover */
+}
+
+
 
 ul.nav-news-feed i.icon1{color: #8dc63f;}
 
@@ -156,11 +173,6 @@ ul.online-users li span.online-dot{
   margin: auto;
 } */
 
-img.profile-photo {
-    height: 58px;
-    width: 58px;
-    border-radius: 50%;
-}
 
 ul.online-users {
     padding-left: 20px;
@@ -182,8 +194,9 @@ ul.online-users {
 }
 
 .profile-card-text {
-    color: black;
+    color: #76ABAE;
 }
+
 
 
 ::ng-deep a {
