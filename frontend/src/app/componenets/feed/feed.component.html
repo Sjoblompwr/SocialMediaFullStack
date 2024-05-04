@@ -5,8 +5,9 @@
 
     <form class="update-status-form">
       <div class='active'><a>Update status</a></div>
-      <textarea id="status" class="form-control form-control-lg flex-textarea" (input)="autoResizeTextarea($event)"  placeholder="What's on your mind?"></textarea>
-      <div class='pull-right'><a (click)="updateStatus()" class='btn btn-primary btn-xs'>Post</a></div>
+      <textarea id="status" class="form-control form-control-lg flex-textarea" (input)="autoResizeTextarea($event)"  placeholder="What's on your mind?">
+      </textarea>
+      <button type="button" (click)="updateStatus()" class='btn btn-primary pull-right'>Post</button>
     </form>
 
   </div>

@@ -7,8 +7,8 @@
 body{
     margin-top:20px;
 }
-h5,p{
-    color: #76ABAE;
+h5,p,a{
+    color: #76ABAE !important;
     text-decoration: none;
 }
 
@@ -21,7 +21,8 @@ h5,p{
 .tweet-item {
     color: #76ABAE;
   }
-.tweet-item button{
+
+button{
     color: #76ABAE;
     background-color: #31363F;
     border: none;
@@ -31,6 +32,13 @@ h5,p{
     margin: 5px;
     cursor: pointer;
 }   
+
+
+span > button {
+    right: 10px;
+    top: 30px;
+    position: absolute;
+}
   
 
 
@@ -90,8 +98,17 @@ h5,p{
   #updateStatusSection {
     position: sticky;
     /*set background color to be that of app.component.css background-colour*/
-    background-color: var(--backgroundcolor);
+    background-color: #222831;
     top: 0;
+    z-index: 999;
+  }
+
+  .update-status-form{
+    background-color: #222831;
+  }
+  .update-status-form >.active{
+    background-color:#222831;
+    color: var(--backgroundcolor);
     z-index: 999;
   }
   

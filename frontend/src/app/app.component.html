@@ -22,7 +22,7 @@
              <div class="col">
                  <app-navbar *ngIf="(loginComponent.isLoggedIn|async)"></app-navbar>
              </div>
-             <div  class="col-6">>
+             <div  class="col-6">
                  <app-login *ngIf="!(loginComponent.isLoggedIn | async)"></app-login>
                  <router-outlet *ngIf="(loginComponent.isLoggedIn|async)"></router-outlet>
              </div>
